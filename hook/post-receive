@@ -1,0 +1,2 @@
+#!/usr/bin/bash
+/zhanfang/mynotes/scripts/update-md-list.sh /zhanfang/gitrepo/zhanfang/bloomnote.git
