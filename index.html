@@ -1,20 +1,152 @@
----
-layout: default
-title: Welcome to Junwei Fang's Blog
-keywords: test,page
-description: Junwei Fang's home page
----
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>&nbsp;</title>
+    <link rel="stylesheet" href="css/index.css" />
+	<link rel="stylesheet" href="css/github-md.css" />
+    <link rel="stylesheet" href="css/atom-one-dark.css" />
+    <script src="js/highlight.min.js"></script>
+    <script src="config/webinfo.js"></script>
+    <script src="config/flowconfig.js"></script>
+    <script src="config/articles.1570765227.js"></script>
+    <script src="js/parse-graphs.js"></script>
+	<script src="js/markdown-it.min.js"></script>
+    <script src="js/webfont.js"></script>
+    <script src="js/snap.svg-min.js"></script>
+    <script src="js/underscore-min.js"></script>
+    <script src="js/sequence-diagram-min.js"></script>
+    <script src="js/raphael.min.js"></script>
+    <script src="js/flowchart.js"></script>
+    <script src="js/mermaid.min.js"></script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre','code','a'],
+        }
+    });
+    </script>
+    <script src="js/mathjax/MathJax.js?config=TeX-MML-AM_CHTML-full"></script>
+    <script defer src="js/index.js"></script>
+</head>
 
-<h2>{{ page.title }}</h2>
+<body>
+    <template id="dialogtmp">
+        <div class="dialog">
+            <div class="d-title">
+                <div class="d-t-ctx"></div>
+                <div class="d-t-act">
+                        <div class="d-t-close"><div>&times;</div></div>
+                        <div class="d-t-min"></div>
+                        <div class="d-t-max"></div>
+                    </div>
+            </div>
+            <div class="d-ctx"></div>
+        </div>
+    </template>
+    <template id="sysinfotmp">
+        <div class="si-btns">
+            <div class="si-specs si-item active" data-win="win-spec">特性</div>
+            <div class="si-refs si-item" data-win="win-ref">引用</div>
+        </div>
+        <div class="si-logo">
+            <div class="si-logo-icon"><img /></div>
+            <div class="si-logo-name"></div>
+        </div>
+        <div class="si-wins">
+            <div class="si-win win-spec active" data-win="win-spec">
+                <div class="d-row">
+                    <div class="si-info si-spec"></div>
+                </div>
+            </div>
 
-<p>Lastest article</p>
-
-<ul>
-
-    {% for post in site.posts %}
-
-    <li>{{ post.date | date_to_string }} <a href="{{ site.baseurl }} {{ post.url }}"> {{ post.title }}</a></li>
-
-    {% endfor %}
-
-</ul>
+            <div class="si-win win-ref" data-win="win-ref">
+                <div class="d-row">
+                    <div class="si-info ref"></div>
+                </div>
+            </div>
+        </div>
+    </template>
+    <template id="prefertmp">
+        <h4>网站信息</h4>
+        <div class="pt-data pt-webinfo">
+            <div class="d-row">
+                <div class="pt-title">名称</div>
+                <div class="pt-info name"><input name="wname" type="text"></div>
+            </div>
+            <div class="d-row">
+                <div class="pt-title">图标(28x28)</div>
+                <div class="pt-info logo"><input name="wlogo" type="text"></div>
+            </div>
+        </div>
+        <h4>流程图</h4>
+        <div class="pt-data pt-flow">
+            <div class="d-row">
+                <div class="pt-title">线宽</div>
+                <div class="pt-info line-width"><input name="line-width" type="text"></div>
+            </div>
+            
+            <div class="d-row">
+                <div class="pt-title">线长</div>
+                <div class="pt-info line-length"><input name="line-length" type="text"></div>
+            </div>
+            
+            <div class="d-row">
+                <div class="pt-title">字号</div>
+                <div class="pt-info font-size"><input name="font-size" type="text"></div>
+            </div>
+            
+            <div class="d-row">
+                <div class="pt-title">Yes对应标题</div>
+                <div class="pt-info yes-title"><input name="yes-text" type="text"></div>
+            </div>
+            
+            <div class="d-row">
+                <div class="pt-title">No对应标题</div>
+                <div class="pt-info no-title"><input name="no-text" type="text"></div>
+            </div>
+        </div>
+    </template>
+    <template id="shutdowntmp">
+        <div class="stinfo">
+            <div class="sti-hints">
+                <div class="sti-icon"><img src=""></div>
+                <div class="sti-ask">您确定关闭 “计算机” 吗？</div>
+            </div>
+            <div class="sti-btns">
+                <div class="sti-btn ok">确定 (<u>Y</u>)</div>
+                <div class="sti-btn cancel">取消(<u>C</u>) </div>
+            </div>
+        </div>
+    </template>
+    <header id="headbar">
+        <div id="logo"><img />
+            <div id="sysmenu">
+                <div class="item about" data-type="about">系统信息...</div>
+                <div class="item preference" data-type="preference">偏好设置...</div>
+                <div class="line"></div>
+                <div class="item">注销</div>
+                <div class="item">切换用户</div>
+                <div class="item">锁定屏幕</div>
+                <div class="line"></div>
+                <div class="item" data-type="shutdown">关机...</div>
+            </div>
+        </div>
+        <div id="webname"></div>
+        <div id="menus"></div>
+    </header>
+    <article id="main">
+        <aside id="filetree"></aside>
+        <article id="md-page">
+            <article id="content"></article>
+        </article>
+    </article>
+    <footer id="footbar">
+        <div id="copyright"></div>
+        <div id="beian"></div>
+    </footer>
+</body>
+</html>
